@@ -13,6 +13,9 @@ class Graph:
         # add a node to an existing node
         self.edges[from_node].append((to_node, weight))
 
+    def get(self, current_node):
+        return self.edges[current_node]
+    
     def BFS(start_node, goal_node):
         # Implement deque data structure for BFS
         queue = deque([start_node])
