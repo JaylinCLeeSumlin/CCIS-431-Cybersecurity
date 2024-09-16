@@ -16,7 +16,7 @@ class Graph:
     def get(self, current_node):
         return self.edges[current_node]
     
-    def BFS(start_node, goal_node):
+    def BFS(self, start_node, goal_node):
         # Implement deque data structure for BFS
         queue = deque([start_node])
 
@@ -33,3 +33,11 @@ class Graph:
             
             # If current node is not the goal, add it to the set of visited nodes
             visited_nodes.add(current_node)
+
+            for neighbor, _ in self.get(current_node):
+                # If neighboring nodes have not been visited, add to queue to be visited
+                if neighbor not in visited_nodes:
+                    queue.append(neighbor)
+        
+        # Return nothing if goal node is not present in graph
+        return
