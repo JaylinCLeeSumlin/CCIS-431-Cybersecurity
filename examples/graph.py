@@ -1,4 +1,5 @@
 from collections import deque
+import heapq
 
 class Graph:
     def __init__(self) -> None:
@@ -41,6 +42,30 @@ class Graph:
         
         # Return nothing if goal node is not present in graph
         return
+    
+    def UCS(self, start_node, goal_node):
+        priority_queue = []
+        heapq.heappush(priority_queue , (0 , start_node))
+        visited_node = set()
+
+        # Maintian global cost
+        gloabal_cost = {start_node: 0}
+
+        while priority_queue:
+            current_cost , current_node = heapq.heappop(priority_queue)
+
+            if current_node == goal_node:
+                return current_cost
+            
+            visited_node.add(current_node)
+
+            for neighbor, cost in self.get(current_node):
+                if neighbor not in visited_node:
+                    new_cost = current_cost + cost
+                    if neighbor not in gloabal_cost or new_cost < gloabal_cost[neighbor]:
+                        gloabal_cost[neighbor] = new_cost
+                        heapq.heappush(priority_queue)
+        return None
     
 if __name__ == "__main__":
 
