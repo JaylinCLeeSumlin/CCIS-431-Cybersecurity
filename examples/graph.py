@@ -41,3 +41,22 @@ class Graph:
         
         # Return nothing if goal node is not present in graph
         return
+    
+if __name__ == "__main__":
+
+    # Initilize graph
+    graph = Graph()
+
+    # Add nodes with format (from_node, to_node, weight)
+    graph.add_edges("A","B", 1)
+    graph.add_edges("A","C", 3)
+    graph.add_edges("B","D", 1)
+    graph.add_edges("C","D", 1)
+    graph.add_edges("B","E", 1)
+    graph.add_edges("D","E", 1)
+
+    # Search graph for node E stating at node C
+    if graph.BFS("C","E"):
+        print("Found goal state: E")
+    else:
+        print("Goal state not found: E")
